@@ -298,8 +298,8 @@
                                                         <label for="filterInput0" style="color: black; text-align: left;">Equal To</label>
                                                         <select id="filterInput0" style="height: 30px;">
                                                             <option value=""></option>
-                                                            <option value="Converted to Invoice">Converted to Invoice</option>
-                                                            <option value="Open">Open</option>
+                                                            <option value="Order Overdue">Order Overdue</option>
+                                                            <option value="Order Completed">Order Completed</option>
                                                         </select><br><br>
                                                         <a class="btn btn-info" onclick="cleardropdown(0)">Clear</a> 
                                                         &nbsp;<a class="btn btn-info" onclick="filterTable(0)">Apply</a>
@@ -382,11 +382,11 @@
                                 <tbody>
                                     {% for p in purch %}
                                     <tr>
-                                        <!-- {% if s.status == "order completed" %}
-                                        <td class="text-primary text-center" style="text-transform: capitalize;">{{s.status}}</td>
+                                        {% if p.convert == 0 %}
+                                        <td class="text-primary text-center" style="text-transform: capitalize;">Order Overdue</td>
                                         {% else %}
-                                        <td class="text-danger text-center" style="text-transform: capitalize;">{{s.status}}</td>
-                                        {% endif %} -->
+                                        <td class="text-danger text-center" style="text-transform: capitalize;">Order Completed</td>
+                                        {% endif %}
                                         <td class="text-black text-center">{{p.orderdate | date:'d-m-Y'}}</td>
                                         <td class="text-black text-center">{{p.duedate | date:'d-m-Y'}}</td>
                                         <td class="text-black text-center">{{p.orderno}}</td>

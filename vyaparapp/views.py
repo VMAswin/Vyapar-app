@@ -17818,12 +17818,10 @@ def purchase_order_details_report(request):
   staff =  staff_details.objects.get(id=id)
   allmodules= modules_list.objects.get(company=staff.company,status='New')
   purch = PurchaseOrder.objects.filter(company=staff.company)
-  # sale_count = sale.count()
   purch_total = 0
   for p in purch:
     if p.grandtotal != '':
       purch_total += float(p.grandtotal)
-  # 'sale':sale, , 'sale_count':sale_count, 'sale_total':sale_total,
   content = {'allmodules':allmodules,'staff':staff,'purch_total':purch_total,'purch':purch}
   return render(request,'company/purchase_order_details_report.html',content)
 # Q(status__icontains = search) |
@@ -17851,7 +17849,7 @@ def purchase_order_details_mail(request):
     template = get_template(template_path)
     html  = template.render(content)
     result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)#, link_callback=fetch_resources)
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
     pdf = result.getvalue()
     filename = f'Purchase Order Report.pdf'
     subject = f"Sharing Purchase Report"
